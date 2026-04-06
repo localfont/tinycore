@@ -1,16 +1,6 @@
-# Değişkeni ayarla
-export TARGET="/home/tc/debian-fs"
-
-# Bağlantıları yap
-sudo mount --bind /dev $TARGET/dev
-sudo mount --bind /dev/pts $TARGET/dev/pts
-sudo mount --bind /proc $TARGET/proc
-sudo mount --bind /sys $TARGET/sys
-sudo mount --bind /run $TARGET/run
-
-# İnternet ayarını kopyala
-sudo cp /etc/resolv.conf $TARGET/etc/resolv.conf
-
-# Chroot içine gir
-sudo chroot $TARGET /bin/bash
-
+# Önce bağlı dizinleri güvenli bir şekilde ayır
+sudo umount -l /home/tc/debian-fs/dev/pts
+sudo umount -l /home/tc/debian-fs/dev
+sudo umount -l /home/tc/debian-fs/proc
+sudo umount -l /home/tc/debian-fs/sys
+sudo umount -l /home/tc/debian-fs/run
